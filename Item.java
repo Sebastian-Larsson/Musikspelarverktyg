@@ -1,9 +1,3 @@
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.*;
-
-
 public class Item implements Comparable <Item>{
 	public String songName;
 	public String artist;
@@ -21,6 +15,10 @@ public class Item implements Comparable <Item>{
 	//returns item name
 	public String getSongName() {
 		return songName;
+	}
+	
+	public String getFileName() {
+		return fileName;
 	}
 
 	//compare names
@@ -40,7 +38,7 @@ public class Item implements Comparable <Item>{
 	{
 		Item itm= new Item ("One Dance" , "Drake", "drake.mp3", "3:15");
 
-		System.out.println( itm);    
+		System.out.println(itm);    
 
 	}   
 }

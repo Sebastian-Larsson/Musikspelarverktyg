@@ -2,9 +2,9 @@ final class Node
 {
 
 	// Friendly data; accessible by other package routines
-	Item     element;
-	Node left;
-	Node right;
+	Item  	element;
+	Node 	leftChild;
+	Node 	rightChild;
 
 
 	Node( )
@@ -12,16 +12,16 @@ final class Node
 		this( null );
 	}
 
-	Node( Object theElement )
+	Node( Item theElement )
 	{
 		this( theElement, null, null );
 	}
 
-	Node( Object theElement, Node lt, Node rt )
+	Node( Item theElement, Node lt, Node rt )
 	{
 		element = theElement;
-		left    = lt;
-		right   = rt;
+		leftChild = lt;
+		rightChild = rt;
 	}
 
 	/**
@@ -32,7 +32,7 @@ final class Node
 		if( t == null )
 			return 0;
 		else
-			return 1 + size( t.left ) + size( t.right );
+			return 1 + size( t.leftChild ) + size( t.rightChild );
 	}
 
 	/**
@@ -43,35 +43,35 @@ final class Node
 		if( t == null )
 			return -1;
 		else
-			return 1 + Math.max( height( t.left ), height( t.right ) );
+			return 1 + Math.max( height( t.leftChild ), height( t.rightChild ) );
 	}
 
 	void printPreOrder( )
 	{
 		System.out.println( element );       // Node
-		if( left != null )
-			left.printPreOrder( );           // Left
-		if( right != null )
-			right.printPreOrder( );          // Right
+		if( leftChild != null )
+			leftChild.printPreOrder( );           // Left
+		if( rightChild != null )
+			rightChild.printPreOrder( );          // Right
 	}
 
 
 	void printPostOrder( )
 	{
-		if( left != null )
-			left.printPostOrder( );          // Left
-		if( right != null )
-			right.printPostOrder( );         // Right
+		if( leftChild != null )
+			leftChild.printPostOrder( );          // Left
+		if( rightChild != null )
+			rightChild.printPostOrder( );         // Right
 		System.out.println( element );       // Node
 	}
 
 	void printInOrder( )
 	{
-		if( left != null )
-			left.printInOrder( );            // Left
+		if( leftChild != null )
+			leftChild.printInOrder( );            // Left
 		System.out.println( element );       // Node
-		if( right != null )
-			right.printInOrder( );           // Right
+		if( rightChild != null )
+			rightChild.printInOrder( );           // Right
 	}
 
 
@@ -83,10 +83,10 @@ final class Node
 	{
 		Node root = new Node( element );
 
-		if( left != null )            // If there's a left subtree
-			root.left = left.duplicate( );    // Duplicate; attach
-		if( right != null )          // If there's a right subtree
-			root.right = right.duplicate( );  // Duplicate; attach
+		if( leftChild != null )            // If there's a left subtree
+			root.leftChild = leftChild.duplicate( );    // Duplicate; attach
+		if( rightChild != null )          // If there's a right subtree
+			root.rightChild = rightChild.duplicate( );  // Duplicate; attach
 		return root;                      // Return resulting tree
 	}
 
