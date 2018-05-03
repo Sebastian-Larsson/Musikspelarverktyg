@@ -6,30 +6,29 @@ public class MakeTree implements Comparable {
 
 	Node root;
 
-	public void addNode(int key, String name) {
-		Node newNode = new Node(key, name);
+	public void addNode(Item name) {
+		Node newNode = new Node(name);
 		if (root == null) {
-
 			root = newNode;
-
-		} else {
+		} 
+		else {
 			Node focusNode = root;
 			Node parent;
 			while (true) {
 				parent = focusNode;
-				if (key < focusNode.key) {
+				if (name.songName.compareTo(focusNode.element.songName) < 0) {
+
 					focusNode = focusNode.leftChild;
 					if (focusNode == null) {
 						parent.leftChild = newNode;
-						return; // All Done
+						return;
 					}
-				} else { // If we get here put the node on the right
-
+				} 
+				else { 
 					focusNode = focusNode.rightChild;
 					if (focusNode == null) {
 						parent.rightChild = newNode;
-						return; // All Done
-
+						return;
 					}
 
 				}
@@ -44,7 +43,6 @@ public class MakeTree implements Comparable {
 		root.leftChild = null;
 		root.rightChild = null;
 		root = null;
-		max = null;
 
 	}
 
@@ -70,18 +68,13 @@ public class MakeTree implements Comparable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		while(reader.hasNext()) {
-			String name = reader.next();		
-			if(theTree.findWord(name) == null) {
-				theTree.addWord(name);
-			}
-			else {
-				theTree.findWord(name).count = theTree.findWord(name).count + 1;
+		while(reader.hasNext()) {	
+				theTree.addNode(new Item(reader.next(),reader.next(),reader.next(),reader.next()));
 			}
 		}
 
 		//theTree.makeEmpty();
-		theTree.interator(theTree.root);
+		theTree.iterator(theTree.root);
 		System.out.println(theTree.getMaxFrek());
 
 	}
