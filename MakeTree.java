@@ -16,8 +16,11 @@ public class MakeTree implements Comparable {
 			Node parent;
 			while (true) {
 				parent = focusNode;
-				if (name.songName.compareTo(focusNode.element.songName) < 0) {
+				if (name.songName.compareTo(focusNode.element.songName) == 0) {
+					return;
+				}
 
+				else if (name.songName.compareTo(focusNode.element.songName) < 0) {
 					focusNode = focusNode.leftChild;
 					if (focusNode == null) {
 						parent.leftChild = newNode;
@@ -59,7 +62,7 @@ public class MakeTree implements Comparable {
 
 		MakeTree theTree = new MakeTree();
 
-		File file = new File("D:\\skola\\Algoritmer & data\\Uppgift5_SebastianLarsson\\src\\words.txt");
+		File file = new File("songs.txt");
 		Scanner reader = null;
 		try {
 			reader = new Scanner(file);
@@ -68,15 +71,10 @@ public class MakeTree implements Comparable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		while(reader.hasNext()) {	
-				theTree.addNode(new Item(reader.next(),reader.next(),reader.next(),reader.next()));
-			}
+		while(reader.hasNextLine()) {	
+			theTree.addNode(new Item(reader.next(),reader.next(),reader.next(),reader.next()));
 		}
-
-		//theTree.makeEmpty();
 		theTree.iterator(theTree.root);
-		System.out.println(theTree.getMaxFrek());
-
 	}
 
 	@Override

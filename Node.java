@@ -7,7 +7,7 @@ final class Node
 	Node 	rightChild;
 
 
-	Node( )
+	Node()
 	{
 		this( null );
 	}
@@ -33,17 +33,6 @@ final class Node
 			return 0;
 		else
 			return 1 + size( t.leftChild ) + size( t.rightChild );
-	}
-
-	/**
-	 * Return the height of the binary tree rooted at t.
-	 */
-	static int height( Node t )
-	{
-		if( t == null )
-			return -1;
-		else
-			return 1 + Math.max( height( t.leftChild ), height( t.rightChild ) );
 	}
 
 	void printPreOrder( )
