@@ -38,7 +38,6 @@ public class MakeTree implements Comparable {
 
 			}
 		}
-
 	}
 
 
@@ -53,7 +52,7 @@ public class MakeTree implements Comparable {
 
 		if (focusNode != null) {
 			iterator(focusNode.leftChild);
-			System.out.println(focusNode);
+			System.out.println(focusNode.element);
 			iterator(focusNode.rightChild);
 		}
 	}
@@ -62,7 +61,7 @@ public class MakeTree implements Comparable {
 
 		MakeTree theTree = new MakeTree();
 
-		File file = new File("songs.txt");
+		File file = new File("D:\\skola\\Algoritmer&data\\Musikspelarverktyg\\src\\songs.txt");
 		Scanner reader = null;
 		try {
 			reader = new Scanner(file);
@@ -74,6 +73,7 @@ public class MakeTree implements Comparable {
 		while(reader.hasNextLine()) {	
 			theTree.addNode(new Item(reader.next(),reader.next(),reader.next(),reader.next()));
 		}
+		
 		theTree.iterator(theTree.root);
 	}
 
