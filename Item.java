@@ -5,7 +5,7 @@ public class Item implements Comparable <Item>{
 	public String songDuration;
 
 	//constructor
-	public Item(String theSongName, String theArtist, String theSongDuration, String theFileName) {
+	public Item(String theArtist, String theSongName, String theSongDuration, String theFileName) {
 		songName = theSongName;
 		artist = theArtist;
 		songDuration = theSongDuration;

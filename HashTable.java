@@ -58,7 +58,7 @@ public class HashTable {
 
 	public static void main(String[] args) {
 
-		HashTable theFunc = new HashTable(310);
+		HashTable theFunc = new HashTable(14);
 		/*
 		MakeTree theTree = new MakeTree();
 		Item itm = new Item("Rihanna","Stay","4:23","stay.mp3");
