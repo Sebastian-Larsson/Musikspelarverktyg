@@ -1,12 +1,10 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-
-public class MakeTree implements Comparable {
+public class MakeTree {
 
 	Node root;
+	int size = 0;
 
 	public void addNode(Item name) {
+		size++;
 		Node newNode = new Node(name);
 		if (root == null) {
 			root = newNode;
@@ -40,12 +38,10 @@ public class MakeTree implements Comparable {
 		}
 	}
 
-
 	public void makeEmpty() {
 		root.leftChild = null;
 		root.rightChild = null;
 		root = null;
-
 	}
 
 	public void iterator(Node focusNode) {
@@ -56,31 +52,8 @@ public class MakeTree implements Comparable {
 			iterator(focusNode.rightChild);
 		}
 	}
-
-	public static void main(String[] args) {
-
-		MakeTree theTree = new MakeTree();
-
-		File file = new File("D:\\skola\\Algoritmer&data\\Musikspelarverktyg\\src\\songs.txt");
-		Scanner reader = null;
-		try {
-			reader = new Scanner(file);
-		} 
-		catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		while(reader.hasNextLine()) {	
-			theTree.addNode(new Item(reader.next(),reader.next(),reader.next(),reader.next()));
-		}
-		
-		theTree.iterator(theTree.root);
+	
+	public int getSize() {
+		return size;
 	}
-
-	@Override
-	public int compareTo(Object arg0) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 }
