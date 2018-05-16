@@ -1,41 +1,61 @@
-final class Node
+/**
+ * Creates a Node with content and two children, a left and a right one, each of which contains an adress to a new Node.
+ * If said adress is null, that means the Node is a leaf and the Tree it's in can't be traversed any further.
+ * @version 1.0
+ * @author S. Larsson<br> A. Ebeling<br> M. Tijanic
+ */
+
+public class Node
 {
 
-	// Friendly data; accessible by other package routines
-	Item  	element;
-	Node 	leftChild;
-	Node 	rightChild;
+	/** 
+	 * Element in Node which is an Item. This is the content of the Node and where information can be stored.
+	 * 
+	 */
+	public Item element;
+	/** 
+	 * Used to traverse. Stores an adress to the next Node.
+	 */
+	public Node leftChild;
+	/** 
+	 * Used to traverse. Stores an adress to the next Node.
+	 */
+	public Node rightChild;
 
-
-	Node()
+	/** 
+	 * Class constructor which takes no arguments.
+	 */
+	public Node()
 	{
 		this( null );
 	}
 
-	Node( Item theElement )
+	/** 
+	 * Class constructor, takes Item as argument.
+	 * @param theElement Item with information.
+	 */
+	public Node( Item theElement )
 	{
 		this( theElement, null, null );
 	}
-
-	Node( Item theElement, Node lt, Node rt )
+	/** 
+	 * Class constructor, takes an Item and two Nodes as argument to create a branch or leaf in MakeTree.
+	 * 
+	 * @param theElement Item with information.
+	 * @param lt Create a left child which is a Node. A null value means won't traverse further.
+	 * @param rt Create a ight child which is a Node. A null value means won't traverse further.
+	 */
+	public Node( Item theElement, Node lt, Node rt )
 	{
 		element = theElement;
 		leftChild = lt;
 		rightChild = rt;
 	}
 
-	/**
-	 * Return the size of the binary tree rooted at t.
+	/** 
+	 * Prints pre-order with no return.
 	 */
-	static int size( Node t )
-	{
-		if( t == null )
-			return 0;
-		else
-			return 1 + size( t.leftChild ) + size( t.rightChild );
-	}
-
-	void printPreOrder( )
+	public void printPreOrder( )
 	{
 		System.out.println( element );       // Node
 		if( leftChild != null )
@@ -44,8 +64,10 @@ final class Node
 			rightChild.printPreOrder( );          // Right
 	}
 
-
-	void printPostOrder( )
+	/** 
+	 * Prints post-order with no return.
+	 */
+	public void printPostOrder( )
 	{
 		if( leftChild != null )
 			leftChild.printPostOrder( );          // Left
@@ -53,8 +75,10 @@ final class Node
 			rightChild.printPostOrder( );         // Right
 		System.out.println( element );       // Node
 	}
-
-	void printInOrder( )
+	/** 
+	 * Print in order with no return.
+	 */
+	public void printInOrder( )
 	{
 		if( leftChild != null )
 			leftChild.printInOrder( );            // Left
@@ -62,21 +86,4 @@ final class Node
 		if( rightChild != null )
 			rightChild.printInOrder( );           // Right
 	}
-
-
-	/**
-	 * Return a reference to a node that is the root of a
-	 * duplicate of the binary tree rooted at the current node.
-	 */
-	Node duplicate( )
-	{
-		Node root = new Node( element );
-
-		if( leftChild != null )            // If there's a left subtree
-			root.leftChild = leftChild.duplicate( );    // Duplicate; attach
-		if( rightChild != null )          // If there's a right subtree
-			root.rightChild = rightChild.duplicate( );  // Duplicate; attach
-		return root;                      // Return resulting tree
-	}
-
 }
